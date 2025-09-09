@@ -12,7 +12,9 @@ SECRET_KEY = 'django-insecure-s!mv!c%m0qmi^%!$=68@%i0#wf)nwcp(r7(tv-(uowweprzzbo
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']  # For MVP. Later, replace '*' with your Render URL.
+ALLOWED_HOSTS = ['elementexplorer-a9co.onrender.com',
+                 'localhost',
+                 '127.0.0.1', ]
 
 
 # Application definition
@@ -98,14 +100,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
-STATIC_URL = 'static/'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
