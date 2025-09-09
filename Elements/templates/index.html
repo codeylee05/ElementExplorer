@@ -110,7 +110,7 @@
             </div>
             {% endif %}
 
-        </div> <!-- End of main container -->
+        </div>
 
         <!-- Footer -->
         <footer class="mt-auto text-center">
@@ -128,9 +128,19 @@
             </div>
         </footer>
 
-    </div> <!-- End flex container -->
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--Service worker registration-->
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("{% static 'Elements/service-worker.js' %}")
+                .then(reg => console.log("✅ Service Worker registered:", reg.scope))
+                .catch(err => console.log("❌ Service Worker failed:", err));
+        }
+    </script>
+
 </body>
 
 
