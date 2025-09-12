@@ -1,58 +1,44 @@
 # ElementExplorer
 
-# ElementExplorer Release Notes
-
-**Version 1.0** – 2025-09-09
-
 ## Overview
 
 ElementExplorer is a lightweight, responsive web app for exploring chemical elements. Users can search by element name or symbol and view detailed information in a clean, interactive card layout. Perfect for students, educators, or anyone curious about chemistry.
 
-## Features in Version 1.0
+# ElementExplorer Release Notes
 
-1. **Element Search**
+**Version 1.1** – 2025-09-12
 
-   - Search for any chemical element by name or symbol.
+Release Date: 12 Sep 2025
 
-2. **Element Card**
+Overview
 
-   - Displays symbol, atomic number, and atomic mass in a visually appealing card.
+Version 1.1 introduces significant backend improvements while maintaining the familiar frontend and user experience. This release focuses on performance, accuracy, and maintainability.
 
-3. **Detailed Element Info**
+New Features & Improvements
 
-   - Protons, neutrons, electrons (with electron configuration)
-   - Type: Metal, Nonmetal, Metalloid
-   - Standard state, melting point, boiling point
+Backend switch to JSON dataset
 
-4. **Responsive Design**
+Replaced the Mendeleev Python library with a lightweight JSON dataset for element information.
 
-5. **Header & Footer**
+Dramatically improves page load times both in development and production.
 
-   - Site name with search bar integrated in a responsive header.
+Corrected melting and boiling points
 
-6. **Initial Placeholder / Intro Card**
+Values are now correctly displayed in °C (converted from Kelvin where applicable).
 
-   - Shows a short welcome message and guide when first visiting the site.
+Future PWA readiness
 
-7. **Styling & UI Touches**
-   - Bootstrap-based layout for easy responsiveness.
+Data is now served from a static JSON file, making offline functionality easier to implement in upcoming releases.
 
-## Notes
+Consistency & reliability
 
-- All element data is provided by the **Mendeleev Python library**.
-- Some values (especially for synthetic or unstable elements) may be unknown or estimated.
-- Currently **no authentication** or user-specific features.
-- Database not required; all data is fetched on the server dynamically.
+The search feature behaves exactly as before; element cards and info display remain unchanged.
 
-## Future Improvements (Planned)
+Bug Fixes
 
-- PWA support for offline usage.
-- Atomic visualizations / 3D models.
-- Interactive periodic table grid.
-- User accounts to save favorites or notes.
-- Additional charts and trends (melting point, atomic radius, electronegativity).
+Fixed slow initial load caused by heavy library imports.
 
----
+Fixed inaccurate or missing melting/boiling points for some elements.
 
 **Author:** Lefa Mofokeng  
 **Instagram:** [@theyenvyllefa](https://www.instagram.com/theyenvyllefa)
