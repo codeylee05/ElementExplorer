@@ -5,6 +5,13 @@ const urlsToCache = [
     "/static/Elements/styles.css",
     "/static/Elements/icons/icon-192x192.png",
     "/static/Elements/icons/icon-512x512.png",
+
+    "/static/data/elements.json",
+
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
+    "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js",
+
+    "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
 ];
 
 // Install: cache core app shell
