@@ -116,6 +116,11 @@
         if (elContainer) elContainer.classList.add("d-none");
         if (placeholder) placeholder.classList.remove("d-none");
         if (card) card.innerHTML = "";
+        // Reset animation
+        card.classList.remove("animation_pop-in");
+        void card.offsetWidth; // force reflow
+        card.classList.add("animation_pop-in");
+
         if (info) info.innerHTML = "";
     }
 
