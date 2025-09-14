@@ -1,51 +1,55 @@
-const CACHE_NAME = "element-explorer-v2";
+const CACHE_NAME = "element-explorer-v2.0";
 
 const urlsToCache = [
     "/",  // homepage
     "/static/Elements/styles.css",
     "/static/Elements/icons/icon-192x192.png",
     "/static/Elements/icons/icon-512x512.png",
-
-    "/static/data/elements.json",
-
-    "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css",
-    "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js",
-
-    "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
 ];
 
+// Install: cache core app shell
 self.addEventListener("install", (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            console.log("Caching app resources...");
-            return cache.addAll(urlsToCache).catch((err) => {
-                console.error("Caching failed:", err);
-            });
-        })
+            console.log("Caching core resources...");
+            return cache.addAll(urlsToCache);
+        }).catch(err => console.error("Caching failed:", err))
     );
 });
 
+// Activate: remove old caches
 self.addEventListener("activate", (event) => {
     event.waitUntil(
-        caches.keys().then((cacheNames) => {
-            return Promise.all(
-                cacheNames
-                    .filter((name) => name !== CACHE_NAME)
-                    .map((name) => caches.delete(name))
-            );
-        })
+        caches.keys().then(keys =>
+            Promise.all(
+                keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
+            )
+        )
     );
 });
 
+// Fetch: special handling for elements.json
 self.addEventListener("fetch", (event) => {
+    const { request } = event;
+
+    if (request.url.includes("elements.json")) {
+        // Network-first for JSON
+        event.respondWith(
+            fetch(request)
+                .then((resp) => {
+                    const clone = resp.clone();
+                    caches.open(CACHE_NAME).then(cache => cache.put(request, clone));
+                    return resp;
+                })
+                .catch(() => caches.match(request))
+        );
+        return;
+    }
+
+    // Default: cache-first, fallback to network
     event.respondWith(
-        caches.match(event.request).then((response) => {
-            return (
-                response ||
-                fetch(event.request).catch(() =>
-                    caches.match("/static/data/elements.json")
-                )
-            );
+        caches.match(request).then((resp) => {
+            return resp || fetch(request);
         })
     );
 });
