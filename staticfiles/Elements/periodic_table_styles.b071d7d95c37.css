@@ -1,0 +1,169 @@
+/* Outer scroll wrapper to allow horizontal scroll on small screens */
+.periodic-scroll-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* The grid has 18 columns (groups). Each row is a horizontal flex container */
+.periodic-grid {
+    display: inline-block;
+    /* shrink-wrap the whole grid width */
+}
+
+/* Each period-row: 18 cells in a row */
+.period-row {
+    display: grid;
+    grid-template-columns: repeat(18, 64px);
+    /* desktop cell width */
+    grid-gap: 6px;
+    margin-bottom: 6px;
+}
+
+/* A single cell */
+.period-cell {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    cursor: default;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+/* smaller variant for f-block */
+.period-cell.small {
+    width: 52px;
+    height: 52px;
+    font-size: 0.85rem;
+}
+
+/* Empty cell */
+.period-cell.empty {
+    background: transparent;
+    box-shadow: none;
+}
+
+/* Hover */
+.period-cell:not(.empty):hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* atomic number and symbol */
+.cell-atomic {
+    font-size: 0.7rem;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.cell-symbol {
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+/* Coloring by type */
+.period-cell.metal {
+    background: linear-gradient(135deg, #d9e6ff, #9fb3ff);
+    color: #0b2f6b;
+}
+
+.period-cell.nonmetal {
+    background: linear-gradient(135deg, #e9f7ea, #bfeac1);
+    color: #0a4a1a;
+}
+
+.period-cell.metalloid {
+    background: linear-gradient(135deg, #fff5d9, #ffd88b);
+    color: #5a3f00;
+}
+
+.period-cell.unknown {
+    background: linear-gradient(135deg, #f2f2f2, #d9d9d9);
+    color: #333;
+}
+
+/* f-block wrapper row */
+.fblock {
+    margin-top: 8px;
+}
+
+.fblock-title {
+    font-weight: 600;
+    color: #333;
+}
+
+.fblock-row {
+    display: flex;
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+    .period-row {
+        grid-template-columns: repeat(18, 56px);
+    }
+
+    .period-cell {
+        width: 56px;
+        height: 56px;
+    }
+}
+
+@media (max-width: 600px) {
+    .period-row {
+        grid-template-columns: repeat(18, 48px);
+    }
+
+    .period-cell {
+        width: 48px;
+        height: 48px;
+    }
+
+    .cell-symbol {
+        font-size: 1.0rem;
+    }
+
+    .cell-atomic {
+        font-size: 0.6rem;
+    }
+}
+
+/* Legend styles */
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #444;
+}
+
+.legend-swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.legend-swatch.metal {
+    background: linear-gradient(135deg, #d9e6ff, #9fb3ff);
+}
+
+.legend-swatch.nonmetal {
+    background: linear-gradient(135deg, #e9f7ea, #bfeac1);
+}
+
+.legend-swatch.metalloid {
+    background: linear-gradient(135deg, #fff5d9, #ffd88b);
+}
+
+.legend-swatch.unknown {
+    background: linear-gradient(135deg, #f2f2f2, #d9d9d9);
+}

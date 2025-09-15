@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-s!mv!c%m0qmi^%!$=68@%i0#wf)nwcp(r7(tv-(uowweprzzbo'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['elementexplorer-a9co.onrender.com',
                  'localhost',
